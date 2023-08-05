@@ -107,6 +107,7 @@ const LinkedList = () => {
         }
         //for the tail
         string = string.concat(`$[ {pointer.value} ] -> null`);
+        console.log(string);
         return string;
     }
 
