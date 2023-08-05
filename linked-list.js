@@ -45,7 +45,7 @@ const LinkedList = () => {
     }
 
     const tail = () => {
-        if(!head) return null;
+        if (!head) return null;
         let pointer = head
         while (pointer.nextNode !== null) {
             pointer = pointer.nextNode;
@@ -85,7 +85,7 @@ const LinkedList = () => {
     }
 
     const find = (value) => {
-        if(!head) return null;
+        if (!head) return null;
         let index = 0;
         let pointer = head;
         while (pointer.nextNode !== null) {
@@ -111,9 +111,29 @@ const LinkedList = () => {
     }
 
     // extra credit
-    // insertAt(value, index)
+    const insertAt = (value, index) => {
+        if (!head) return null;
+        const newNode = Node(value);
+        length++;
+        let pointer = head;
+        for (let i = 0; i < index - 1; i++) {
+            pointer = pointer.nextNode;
+        }
+        const nextNode = pointer.nextNode;
+        pointer.nextNode = newNode;
+        newNode.nextNode = nextNode;
+    }
 
-    // removeAt(value, index)
+    const removeAt = (index) => {
+        if (!head) return null;
+        if (index > length || index < 0) return;
+        if (index === 0)head = head.nextNode;
+        else {
+            const prePointer = at(index -1);
+            prePointer.nextNode = prePointer.nextNode.nextNode;
+        }
+        length--;
+    }
 
     return {
         head,
@@ -126,6 +146,8 @@ const LinkedList = () => {
         pop,
         contains,
         find,
-        toString
+        toString, 
+        insertAt,
+        removeAt,
     }
 }
